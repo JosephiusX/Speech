@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TalkApp</title>
+    <style>
+        body {
+            width: 90%;
+            margin: 0 auto;
+            margin-top: 1rem;
+        }
+        
+        #text {
+            width: 100%;
+            height: 50vh;
+        }
+
+    </style>
+</head>
+<body>
+    <textarea id="text"></textarea>
+    <label for="speed">Speed</label>
+    <input type="number" name='speed' id='speed' min='.5' max='3' step='.5' value='1'>
+    <button id='play-button'>Play</button>
+    <button id='pause-button'>Pause</button>
+    <button id='stop-button'>Stop</button>
+    <button id='clear-button'>Clear</button>
+
+    <script> const playButton = document.getElementById('play-button')
+        const pauseButton = document.getElementById('pause-button')
+        const stopButton = document.getElementById('stop-button')
+        const textInput = document.getElementById('text')
+        const speedInput = document.getElementById('speed')
+        const clearButton = document.getElementById('clear-button')
+        let currentCharacter
+        
+        // event listeners
+        
+        playButton.addEventListener('click', () => { 
+            playText(textInput.value)
+        })
+        pauseButton.addEventListener('click', pauseText)
+        stopButton.addEventListener('click',stopText)
+        speedInput.addEventListener('input', () => { // when i change the speed
+            stopText() // i stop the speek
+            playText(utterance.text.substring(currentCharacter)) // start it where I left off
+        })
+        window.addEventListener('load',stopText)
+        clearButton.addEventListener('click', () => {textInput.value = ''})
+        
+        
+        
+        const utterance = new SpeechSynthesisUtterance(text)
+        utterance.addEventListener('end', () => { // listening for the end of utterance 
+            textInput.disabled = false // we make the textbox work again after utterance is finished
+        })
+        utterance.addEventListener('boundary', e => {
+            currentCharacter = e.charIndex
+        })
+        
+        function playText(text) {
+            
+            if (speechSynthesis.paused && speechSynthesis.speaking){ // if we are paused and have text left to speek
+                return speechSynthesis.resume() // the return is so that we dont go on to the next and return a new speech utterance
+            }
+            if (speechSynthesis.speaking) return
+            utterance.text = text
+            utterance.rate = speedInput.value || 1
+            textInput.disabled = true // disables textbox while playing
+            speechSynthesis.speak(utterance)
+        }
+        
+        function pauseText() {
+            if (speechSynthesis.speaking) speechSynthesis.pause()
+        }
+        
+        function stopText() {
+            speechSynthesis.cancel()
+        }
+        </script>
+</body>
+</html>
