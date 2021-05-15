@@ -35,6 +35,7 @@
         const speedInput = document.getElementById('speed')
         const clearButton = document.getElementById('clear-button')
         let currentCharacter
+        var synth = window.speechSynthesis;
         
         // event listeners
         
@@ -48,7 +49,10 @@
             playText(utterance.text.substring(currentCharacter)) // start it where I left off
         })
         window.addEventListener('load',stopText)
-        clearButton.addEventListener('click', () => {textInput.value = ''})
+        clearButton.addEventListener('click', () => {
+            textInput.value = ''
+            synth.cancel()
+        })
         
         
         
@@ -63,7 +67,7 @@
         function playText(text) {
             
             if (speechSynthesis.paused && speechSynthesis.speaking){ // if we are paused and have text left to speek
-                return speechSynthesis.resume() // the return is so that we dont go on to the next and return a new speech utterance
+                return synth.resume() // the return is so that we dont go on to the next and return a new speech utterance
             }
             if (speechSynthesis.speaking) return
             utterance.text = text
@@ -73,11 +77,13 @@
         }
         
         function pauseText() {
-            if (speechSynthesis.speaking) speechSynthesis.pause()
+            if (speechSynthesis.speaking) synth.pause()
         }
         
         function stopText() {
+            synth.resume()
             speechSynthesis.cancel()
+            textInput.disabled = false
         }
         </script>
 </body>
