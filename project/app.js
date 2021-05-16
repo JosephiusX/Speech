@@ -13,9 +13,9 @@ var synth = window.speechSynthesis;
 
 // event listeners
 
-playButton.addEventListener('click', () => { 
-    playText(textInput.value)
-})
+// playButton.addEventListener('click', () => { 
+//     playText(textInput.value)
+// })
 pauseButton.addEventListener('click', pauseText)
 stopButton.addEventListener('click',stopText)
 speedInput.addEventListener('input', () => { // when i change the speed
@@ -111,8 +111,8 @@ const Keyboard = {
             "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "backspace",
             "q", "w", "e", "r", "t", "y", "u", "i", "o", "p",
             "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", "enter",
-            "done", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?",
-            "space", "clear"
+            "done", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?", "clear",
+            "space",'save', "pause", "stop", "play"
         ];
 
         // Creates HTML for an icon
@@ -150,6 +150,34 @@ const Keyboard = {
                         synth.cancel()
                     })
 
+                    break;
+
+                case "save" :
+                    keyElement.classList.add('keyboard__key--wide');
+                    keyElement.textContent = key.toLocaleLowerCase();
+                    
+                    break;
+
+                case "pause" :
+                    keyElement.classList.add('keyboard__key--wide');
+                    keyElement.textContent = key.toLocaleLowerCase();
+                    
+                    break;
+
+                case "stop" :
+                    keyElement.classList.add('keyboard__key--wide');
+                    keyElement.textContent = key.toLocaleLowerCase();
+                    
+                    break;
+
+                case "play" :
+                    keyElement.classList.add('keyboard__key--wide');
+                    keyElement.textContent = key.toLocaleLowerCase();
+
+                    keyElement.addEventListener('click', () => { 
+                        playText(this.properties.value)
+                    })
+                    
                     break;
 
                 case "caps":
