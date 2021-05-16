@@ -16,7 +16,7 @@ var synth = window.speechSynthesis;
 // playButton.addEventListener('click', () => { 
 //     playText(textInput.value)
 // })
-pauseButton.addEventListener('click', pauseText)
+// pauseButton.addEventListener('click', pauseText)
 // stopButton.addEventListener('click',stopText)
 speedInput.addEventListener('input', () => { // when i change the speed
     stopText() // i stop the speek
@@ -161,6 +161,9 @@ const Keyboard = {
                 case "pause" :
                     keyElement.classList.add('keyboard__key--wide');
                     keyElement.textContent = key.toLocaleLowerCase();
+
+                    keyElement.addEventListener('click', pauseText);
+
                     
                     break;
 
