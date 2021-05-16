@@ -178,6 +178,7 @@ const Keyboard = {
                     keyElement.textContent = key.toLocaleLowerCase();
 
                     keyElement.addEventListener('click', () => { 
+                        if(this.properties.value.length > 0)
                         playText(this.properties.value)
                     })
                     
