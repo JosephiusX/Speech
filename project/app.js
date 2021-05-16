@@ -23,10 +23,7 @@ speedInput.addEventListener('input', () => { // when i change the speed
     playText(utterance.text.substring(currentCharacter)) // start it where I left off
 })
 window.addEventListener('load',stopText)
-clearButton.addEventListener('click', () => {
-    textInput.value = ''
-    synth.cancel()
-})
+
 
 
 
@@ -105,16 +102,17 @@ const Keyboard = {
                 });
             });
         });
-    },
+    }, 
 
     _createKeys() {
+        // fragments are little virtual elements that I can use to append other elements to then append the whole fragment to another element 
         const fragment = document.createDocumentFragment();
         const keyLayout = [
             "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "backspace",
             "q", "w", "e", "r", "t", "y", "u", "i", "o", "p",
             "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", "enter",
             "done", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?",
-            "space"
+            "space", "clear"
         ];
 
         // Creates HTML for an icon
@@ -127,8 +125,8 @@ const Keyboard = {
             const insertLineBreak = ["backspace", "p", "enter", "?"].indexOf(key) !== -1;
 
             // Add attributes/classes
-            keyElement.setAttribute("type", "button");
-            keyElement.classList.add("keyboard__key");
+            keyElement.setAttribute("type", "button"); // setting the keys to be buttons
+            keyElement.classList.add("keyboard__key"); // giving all the keys a class
 
             switch (key) {
                 case "backspace":
@@ -139,6 +137,17 @@ const Keyboard = {
                         this.properties.value = this.properties.value.substring(0, this.properties.value.length - 1);
                         this._triggerEvent("oninput");
                     });
+
+                    break;
+                    
+                case "clear":
+                    keyElement.classList.add('keyboard__key--wide');
+                    keyElement.textContent = key.toLocaleLowerCase();
+
+                    keyElement.addEventListener("click", () => {
+                        textInput.value = ''
+                        synth.cancel()
+                    })
 
                     break;
 
@@ -152,7 +161,7 @@ const Keyboard = {
                     });
 
                     break;
-
+ 
                 case "enter":
                     keyElement.classList.add("keyboard__key--wide");
                     keyElement.innerHTML = createIconHTML("keyboard_return");
