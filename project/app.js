@@ -146,6 +146,7 @@ const Keyboard = {
 
                     keyElement.addEventListener("click", () => {
                         textInput.value = ''
+                        this.properties.value = this.properties.value = "";
                         synth.cancel()
                     })
 
