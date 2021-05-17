@@ -37,8 +37,8 @@ utterance.addEventListener('boundary', e => {
 
 function playText(text) {
     
-    if (speechSynthesis.paused && speechSynthesis.speaking){ // if we are paused and have text left to speek
-        return synth.resume() // the return is so that we dont go on to the next and return a new speech utterance
+    if (speechSynthesis.paused){ // if we are paused and have text left to speek
+        playText(utterance.text.substring(currentCharacter)) // the return is so that we dont go on to the next and return a new speech utterance
     }
     if (speechSynthesis.speaking) return
     utterance.text = text
@@ -48,7 +48,9 @@ function playText(text) {
 }
 
 function pauseText() {
-    if (speechSynthesis.speaking) synth.pause()
+    if (speechSynthesis.speaking) {
+        speechSynthesis.pause()
+    }
 }
 
 function stopText() {
@@ -112,7 +114,7 @@ const Keyboard = {
             "q", "w", "e", "r", "t", "y", "u", "i", "o", "p",
             "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", "enter",
             "done", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?", "clear",
-            "space",'save', "pause", "stop", "play"
+            "space",'save', /*"pause"*/, "stop", "play"
         ];
 
         // Creates HTML for an icon
@@ -158,14 +160,14 @@ const Keyboard = {
                     
                     break;
 
-                case "pause" :
-                    keyElement.classList.add('keyboard__key--wide');
-                    keyElement.textContent = key.toLocaleLowerCase();
+                // case "pause" :
+                //     keyElement.classList.add('keyboard__key--wide');
+                //     keyElement.textContent = key.toLocaleLowerCase();
 
-                    keyElement.addEventListener('click', pauseText);
+                //     keyElement.addEventListener('click', pauseText);
 
                     
-                    break;
+                //     break;
 
                 case "stop" :
                     keyElement.classList.add('keyboard__key--wide');
