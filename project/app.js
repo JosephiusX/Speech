@@ -42,7 +42,7 @@ function addTodo(e) { // pass in event to addTodo function
    `  <div class="dropdown">
         <button onclick="myFunction()" class="dropbtn">Dropdown</button>
         <div id="myDropdown" class="dropdown-content">
-          <a href="#">Link 1</a>
+          <a href="#">${console.log('clicked the link')}</a>
           <a href="#">Link 2</a>
           <a href="#">Link 3</a>
         </div>
@@ -165,7 +165,7 @@ function getTodos() {
     trashButton.innerHTML = `<i class="fas fa-trash"></i>`;
     trashButton.classList.add("trash-btn");
     todoDiv.appendChild(trashButton);
-    
+
     // copy from addTodo
     const assignTopic = document.createElement('div'); // created div element
   assignTopic.innerHTML = // added this section html
