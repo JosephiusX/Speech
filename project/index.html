@@ -4,13 +4,52 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
     <link rel="shortcut icon" href="/assets/favicon.ico">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- todo links /////////////////////////////// -->
+    <!-- todo links /////////////////////////////// -->
+    <!-- todo links /////////////////////////////// -->
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+      integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+      crossorigin="anonymous"
+    />
 
     <title>TalkApp</title>
 </head>
 <body>
+    <!-- todo html ////////////////////////////////////////// -->
+    <!-- todo html ////////////////////////////////////////// -->
+    <!-- todo html ////////////////////////////////////////// -->
+    
+    <header>
+        <h1>Ed's Todo List</h1>
+      </header>
+      <form>
+        <input type="text" class="todo-input" />
+        <button class="todo-button" type="submit">
+          <i class="fas fa-plus-square"></i>
+        </button>
+        <div class="select">
+          <select name="todos" class="filter-todo">
+            <option value="all">All</option>
+            <option value="completed">Completed</option>
+            <option value="uncompleted">Uncompleted</option>
+          </select>
+        </div>
+      </form>
+      <div class="todo-container">
+        <ul class="todo-list"></ul>
+      </div>
+
     <!-- textbox and buttons //////////////////////////////////// -->
     <!-- textbox and buttons //////////////////////////////////// -->
     <!-- textbox and buttons //////////////////////////////////// -->
@@ -18,7 +57,28 @@
     <textarea class="use-keyboard-input" id="text"></textarea>
     <label for="speed">Speed</label>
     <input type="number" name='speed' id='speed' min='.5' max='3' step='.5' value='1'>
-    <button id='pause-button'>Pause</button>
+
+    <section class="subject-container">
+
+                <label for="number">Number</label>
+                <select name="numbers" id="numbers">
+                 <option value="1">1</option>  <!-- <option value="dog">Dog</option> -->
+                 <option value="2">2</option>
+                 <option value="3">3</option>
+                 <option value="4">4</option>
+                </select>
+                
+
+                <label for="animals">Animals</label>
+                <select name="animals" id="animals">
+                 <option value="cat">cat</option>
+                 <option value="dog">dog</option>
+                 <option value="bear">bear</option>
+                 <option value="cow">cow</option>
+                 </select>
+
+    </section>
+   
 
     <!-- Keyboard Body ///////////////////////////////////////// -->
     <!-- Keyboard Body ///////////////////////////////////////// -->
