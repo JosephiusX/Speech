@@ -165,16 +165,19 @@ function getTodos() {
     trashButton.innerHTML = `<i class="fas fa-trash"></i>`;
     trashButton.classList.add("trash-btn");
     todoDiv.appendChild(trashButton);
+    
     // copy from addTodo
-    // const assignTopic = document.createElement('div'); // created div element
-    // assignTopic.innerHTML = // added this section html
-    // `<select name="todos" class="filter-todo">
-    //       <option value="all">All</option>
-    //       <option value="completed">Completed</option>
-    //       <option value="uncompleted">Uncompleted</option>
-    //   </select>`
-    //   assignTopic.classList.add('topic-btn'); // gave it a classlist
-    //   todoDiv.appendChild(assignTopic) // append to todoDiv
+    const assignTopic = document.createElement('div'); // created div element
+  assignTopic.innerHTML = // added this section html
+   `  <div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+        <div id="myDropdown" class="dropdown-content">
+          <a href="#">Link 1</a>
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
+        </div>
+      </div>`
+    todoDiv.appendChild(assignTopic) // append to todoDiv
     //attach final Todo
     todoList.appendChild(todoDiv);
   });
