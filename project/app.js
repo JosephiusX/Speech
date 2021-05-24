@@ -16,9 +16,36 @@ filterOption.addEventListener("click", filterTodo);
 
 //Functions
 
+const TopicList = {
+
+}
+
 function addTodo(e) { // pass in event to addTodo function
   
   e.preventDefault();//Prevent natural behaviour
+
+  const topicList = `<div class="dropdown">
+  <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+  <div id="myDropdown" class="dropdown-content">
+  <form>
+
+  <div>
+    <input type="radio" id="contactChoice1"
+     name="contact" value="email">
+    <label for="contactChoice1">Email</label>
+
+    <input type="radio" id="contactChoice2"
+     name="contact" value="phone">
+    <label for="contactChoice2">Phone</label>
+
+    <input type="radio" id="contactChoice3"
+     name="contact" value="mail">
+    <label for="contactChoice3">Mail</label>
+  </div>
+
+</form>
+  </div>
+</div>`
   
   const todoDiv = document.createElement("div");//Create todo div
   todoDiv.classList.add("todo"); // give it a class of todo
@@ -39,14 +66,7 @@ function addTodo(e) { // pass in event to addTodo function
 
   const assignTopic = document.createElement('div'); // created div element
   assignTopic.innerHTML = // added this section html
-   `  <div class="dropdown">
-        <button onclick="myFunction()" class="dropbtn">Dropdown</button>
-        <div id="myDropdown" class="dropdown-content">
-          <a href="#">${console.log('clicked the link')}</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
-        </div>
-      </div>`
+   `  ${topicList}`
     todoDiv.appendChild(assignTopic) // append to todoDiv
   
   // const assignTopic = document.createElement('div'); // created div element
@@ -502,10 +522,3 @@ const Keyboard = {
 window.addEventListener("DOMContentLoaded", function () {
     Keyboard.init();
 });
-
-const Category = function(subject, phrase) {
-    this.subject = subject;
-    this.phrase = phrase;
-}
-
-console.log(new Category('subject', 'phrase'))
