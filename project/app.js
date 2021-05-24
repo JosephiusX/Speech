@@ -32,15 +32,17 @@ function addTodo(e) { // pass in event to addTodo function
   todoDiv.appendChild(newTodo); // append new todo to 
   todoInput.value = ""; // clear the text input value
   
-  const completedButton = document.createElement("button");//Create Completed Button
-  completedButton.innerHTML = `<i class="fas fa-check"></i>`; // give completed button inner html
-  completedButton.classList.add("complete-btn"); // give it a class
-  todoDiv.appendChild(completedButton); // append the button to todo div
+  const playBtn = document.createElement("button");//Create Completed Button
+  playBtn.innerHTML = `<i class="fas fa-play"></i>`; // give completed button inner html
+  playBtn.classList.add("play-btn"); // give it a class
+  todoDiv.appendChild(playBtn); // append the button to todo div
   
   const trashButton = document.createElement("button");//Create trash button
   trashButton.innerHTML = `<i class="fas fa-trash"></i>`; // give it an html 
   trashButton.classList.add("trash-btn"); // give it a classlist
   todoDiv.appendChild(trashButton); // append trashButton to todo-div created above
+
+  
   
   todoList.appendChild(todoDiv); // append todoDiv to todo list
 }
