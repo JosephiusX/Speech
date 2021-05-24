@@ -32,15 +32,40 @@ function addTodo(e) { // pass in event to addTodo function
   todoDiv.appendChild(newTodo); // append new todo to 
   todoInput.value = ""; // clear the text input value
   
-  const playBtn = document.createElement("button");//Create Completed Button
-  playBtn.innerHTML = `<i class="fas fa-play"></i>`; // give completed button inner html
+  const playBtn = document.createElement("button");//Create play Button
+  playBtn.innerHTML = `<i class="fas fa-play"></i>`; // give play button inner html
   playBtn.classList.add("play-btn"); // give it a class
   todoDiv.appendChild(playBtn); // append the button to todo div
+
+  const assignTopic = document.createElement('div'); // created div element
+  assignTopic.innerHTML = // added this section html
+   `  <div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+        <div id="myDropdown" class="dropdown-content">
+          <a href="#">Link 1</a>
+          <a href="#">Link 2</a>
+          <a href="#">Link 3</a>
+        </div>
+      </div>`
+    todoDiv.appendChild(assignTopic) // append to todoDiv
   
-  const trashButton = document.createElement("button");//Create trash button
+  // const assignTopic = document.createElement('div'); // created div element
+  // assignTopic.innerHTML = // added this section html
+  //  `< name="todos" class="filter-todo">
+  //       <option value="all">All</option>
+  //       <option value="completed">Completed</option>
+  //       <option value="uncompleted">Uncompleted</option>
+  //   </>`
+  //   // assignTopic.classList.add('topic-btn'); // gave it a classlist
+  //   todoDiv.appendChild(assignTopic) // append to todoDiv
+
+  
+  const trashButton = document.createElement("button"); //Create trash button
   trashButton.innerHTML = `<i class="fas fa-trash"></i>`; // give it an html 
   trashButton.classList.add("trash-btn"); // give it a classlist
   todoDiv.appendChild(trashButton); // append trashButton to todo-div created above
+
+
 
   
   
@@ -114,8 +139,8 @@ function removeLocalTodos(todo) {
 }
 
 function getTodos() {
-  let todos;
-  if (localStorage.getItem("todos") === null) {
+  let todos; // set empty variable for todo
+  if (localStorage.getItem("todos") === null) { // it there are no todos un local storage
     todos = [];
   } else {
     todos = JSON.parse(localStorage.getItem("todos"));
@@ -130,19 +155,53 @@ function getTodos() {
     newTodo.classList.add("todo-item");
     todoDiv.appendChild(newTodo);
     todoInput.value = "";
-    //Create Completed Button
-    const completedButton = document.createElement("button");
-    completedButton.innerHTML = `<i class="fas fa-check"></i>`;
-    completedButton.classList.add("complete-btn");
-    todoDiv.appendChild(completedButton);
+    // copy from addTodo to this getTodo function as well
+    const playBtn = document.createElement("button");//Create play Button
+    playBtn.innerHTML = `<i class="fas fa-play"></i>`; // give play button inner html
+    playBtn.classList.add("play-btn"); // give it a class
+    todoDiv.appendChild(playBtn);
     //Create trash button
     const trashButton = document.createElement("button");
     trashButton.innerHTML = `<i class="fas fa-trash"></i>`;
     trashButton.classList.add("trash-btn");
     todoDiv.appendChild(trashButton);
+    // copy from addTodo
+    // const assignTopic = document.createElement('div'); // created div element
+    // assignTopic.innerHTML = // added this section html
+    // `<select name="todos" class="filter-todo">
+    //       <option value="all">All</option>
+    //       <option value="completed">Completed</option>
+    //       <option value="uncompleted">Uncompleted</option>
+    //   </select>`
+    //   assignTopic.classList.add('topic-btn'); // gave it a classlist
+    //   todoDiv.appendChild(assignTopic) // append to todoDiv
     //attach final Todo
     todoList.appendChild(todoDiv);
   });
+}
+
+// dropdown Component //////////////////////////////////////
+// dropdown Component //////////////////////////////////////
+// dropdown Component //////////////////////////////////////
+
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
 }
 
 // text to speach and buttons ///////////////////////////////
